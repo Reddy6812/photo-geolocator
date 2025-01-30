@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #map { height: 500px; width: 100%; border: 1px solid #ccc; margin: 20px 0; }
+        .back-link { display: block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Location Found</h1>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% else %}
+        <p>Source: {{ source }}</p>
+        <div id="map"></div>
+        <a href="/" class="back-link">← Upload another photo</a>
+    {% endif %}
+
+    <script>
+        function initMap() {
+            const location = { lat: {{ lat }}, lng: {{ lng }} };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: location,
+            });
+            new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Photo Location",
+            });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ maps_api_key }}&callback=initMap">
+    </script>
+</body>
+</html>

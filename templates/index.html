@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Geolocator</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .upload-box { border: 2px dashed #ccc; padding: 30px; text-align: center; margin: 20px 0; }
+        input[type="file"] { margin: 20px 0; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Photo Geolocator</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="upload-box">
+            <h3>Upload a Photo</h3>
+            <input type="file" name="file" accept="image/*" required>
+            <br>
+            <input type="submit" value="Find Location">
+        </div>
+    </form>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
